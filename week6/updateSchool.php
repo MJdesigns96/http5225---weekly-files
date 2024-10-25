@@ -56,6 +56,7 @@
                     <label for="phone" class="form-label">Phone</label>
                     <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $result['Phone']; ?>">
                 </div>
+                <input type="hidden" name="id" value="<?php echo $schoolID; ?>">
                 <button type="submit" class="btn btn-primary" name="updateSchool">Update</button>
             </form>
             </div>

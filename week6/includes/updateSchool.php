@@ -1,5 +1,6 @@
 <?php 
     if(isset($_POST['updateSchool'])) {
+        $schoolId = $_POST['id'];
         $schoolName = $_POST['schoolName'];
         $schoolType = $_POST['schoolType'];
         $phone = $_POST['phone'];
@@ -19,7 +20,9 @@
         SET `School Name` = '" . mysqli_real_escape_string($connect, $schoolName) . "',
         `School Type` = '" . mysqli_real_escape_string($connect, $schoolType) . "',
         `phone` = '" . mysqli_real_escape_string($connect, $phone) . "',
-        `email` = '" . mysqli_real_escape_string($connect, $email) . "'";
+        `email` = '" . mysqli_real_escape_string($connect, $email) . "'
+        WHERE `id` = '$schoolId'
+        ";
 
         $school = mysqli_query($connect, $query);
 
