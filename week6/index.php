@@ -1,3 +1,7 @@
+<?php 
+    include('includes/functions.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +28,11 @@
                 Schools
             </h1>
         </div>  
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <?php get_message(); ?>
+      </div>
     </div>
     <div class="row">
         <?php

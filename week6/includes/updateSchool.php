@@ -1,4 +1,5 @@
 <?php 
+    include('functions.php');
     if(isset($_POST['updateSchool'])) {
         $schoolId = $_POST['id'];
         $schoolName = $_POST['schoolName'];
@@ -26,9 +27,10 @@
 
         $school = mysqli_query($connect, $query);
 
-        if($school) {
+        if($school){
+            set_message('School was successfully updated', 'success');
             header("Location: ../index.php");
-        } else {
-            echo "There was an error adding the school: " . mysqli_error($connect);
-        }
+          }else{
+            echo "There was an error adding the school: " . mysqli_error($connect); 
+          }
     }
