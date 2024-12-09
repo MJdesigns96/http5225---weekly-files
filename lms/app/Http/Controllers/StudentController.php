@@ -18,6 +18,14 @@ class StudentController extends Controller
         ]);
     }
 
+    public function trashed()
+    {
+        $students = Student::onlyTrashed() -> get();
+        return view('students.trashed', [
+            'students' => $students
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -63,8 +71,26 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function trash($id)
     {
-        //
+        Student::destroy($id);
+        return redirect() -> route('students.trashed');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $student = Student::withTrashed() -> where('id', $id) -> first();
+        $student -> forceDelete();
+        return redirect() -> route('students.trashed');
+    }
+
+    public function restore($id)
+    {
+        $student = Student::withTrashed() -> where('id', $id) -> first();
+        $student -> restore();
+        return redirect() -> route('students.index');
     }
 }
