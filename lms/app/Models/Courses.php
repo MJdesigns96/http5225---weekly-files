@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Student extends Model
+class Courses extends Model
 {
     //
     use HasFactory;
@@ -16,13 +17,13 @@ class Student extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'fname',
-        'lname',
-        'email'
+        'courseName',
+        'courseID',
+        'description'
     ];
 
-    public function courses(): BelongsToMany 
+    public function students(): BelongsToMany 
     {
-        return $this->beongsToMany(Course::class);
+        return $this->beongsToMany(Student::class);
     }
 }
