@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('content')
     <div class="row">
         <div class="col">
@@ -23,6 +24,17 @@
                     <label for="email" class="form-label">Email</label>
                     <input type="text" class="form-control" id="email" name="email">
                   </div>
+                  <div class="mb-3">
+                    <label for="courseName" class="form-label">Select Course</label>
+                    <div id="courseName">
+                        @foreach($course as $course)
+                            <div>
+                                <input type="checkbox" name="courseName" value="{{ $course->id }}" id="course_{{ $course->id }}">
+                                <label for="course_{{ $course->id }}">{{ $course->courseName }}</label>
+                            </div>
+                    <input type="text" class="form-control" id="email" name="email">
+                  </div>
+
                   <button type="submit" class="btn btn-primary">Add Student</button>
             </form>
         </div>

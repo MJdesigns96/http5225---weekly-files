@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use App\Models\Course;
 
 class StudentController extends Controller
 {
@@ -31,7 +32,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('students.create')->with('course', Course::all());;
     }
 
     /**
@@ -39,7 +40,10 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        Student::create($request->validated());
+        // Student::create($request->validated());
+        $validated = $request->validated();
+        $student = Student::create($validated);        
+        $student->courses()->attach($validated['course_name']); 
         return redirect()->route('students.index');
     }
 
